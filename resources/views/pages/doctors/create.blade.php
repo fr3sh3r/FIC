@@ -110,6 +110,27 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label>ID IHS (ID Indonesia Health Service)</label>
+                                <input type="text" class="form-control @error('id_ihs') is-invalid @enderror"
+                                    name="id_ihs" value="{{ old('id_ihs') }}">
+                                @error('id_ihs')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>NIK (Nomor Induk Kependudukan)</label>
+                                <input type="number" class="form-control @error('nik') is-invalid @enderror" name="nik"
+                                    value="{{ old('nik') }}">
+                                @error('nik')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
 
                             <div class="form-group">

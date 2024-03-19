@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
-    
+
 
     use HasFactory;
     //ini hanya pengingat judul field table doctors_table
@@ -18,6 +18,7 @@ class Doctor extends Model
     // $table->string('photo')->nullable();
     // $table->string('address')->nullable();
     // $table->string('sip');
+    //tambahan 2 field pada tabel doctor yaitu id_ihs dan nik
 
 
     protected $fillable = [
@@ -28,6 +29,8 @@ class Doctor extends Model
         'photo',
         'address',
         'sip',
+        'id_ihs',   //tambahan baru via migration
+        'nik',      //tambahan baru via migration
     ];
 
 }

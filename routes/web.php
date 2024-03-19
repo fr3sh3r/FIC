@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
-
+use App\Http\Controllers\DoctorScheduleController;
 
 
 /*
@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctors', DoctorController::class);
     //import                 use App\Http\Controllers\DoctorController; //taro di baris atas
 
+
+    //route untuk 'doctor-schedules'
+    Route::resource('doctor-schedules', DoctorScheduleController::class);
+    //import                 use App\Http\Controllers\DoctorScheduleController; //taro di baris atas
 
 
 });

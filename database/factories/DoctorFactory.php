@@ -24,6 +24,8 @@ class DoctorFactory extends Factory
             'photo' => fake()->imageUrl(),
             'address' => fake()->address(),
             'sip'=>fake()->numberBetween(1000,9999),
+            'id_ihs' => fake()->word(),
+            'nik' =>fake()->numberBetween(2731288123,9232287629),
         ];
     }
 }

@@ -171,6 +171,34 @@ require                    --}}
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label>ID IHS (Indonesia Health Service)</label>
+                                <input type="text"
+                                    class="form-control @error('id_ihs')   //harus huruf kecil sesuai tabel
+                                is-invalid
+                            @enderror"
+                                    name="id_ihs" value="{{ $doctor->id_ihs }}">
+                                @error('id_ihs')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>NIK (Nomor Induk Kependudukan)</label>
+                                <input type="number"
+                                    class="form-control @error('nik')   //harus huruf kecil sesuai tabel
+                                is-invalid
+                            @enderror"
+                                    name="nik" value="{{ $doctor->nik }}">
+                                @error('nik')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
                             {{-- <div class="form-group">
                                 <label for="photo">Doctor Photo</label>
                                 <input type="file" name="photo" id="photo" accept="image/*">

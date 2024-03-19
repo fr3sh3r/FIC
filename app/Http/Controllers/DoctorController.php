@@ -69,14 +69,30 @@ class DoctorController extends Controller
             'doctor_email' => 'required|email',
             'sip' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // adjust file types and size as needed
+            'id_ihs' => 'required',
+            'nik' => 'required',
         ]);
 
         // Handle file upload
         $photoPath = null;
+        //if image exist
         if ($request->hasFile('photo')) {
             $photoExtension = $request->file('photo')->getClientOriginalExtension();
-            $photoFileName = $request->doctor_name . ".{$photoExtension}";
+            //saving photo with filename as doctor_name
+            //$photoFileName = $request->doctor_name . ".{$photoExtension}";
+
+            //saving photo with filename TIME()
+            //$photoFileName = time(). ".{$photoExtension}";
+
+            //save file image with doctor_name and time
+            $photoFileName = $request->doctor_name . time().".{$photoExtension}";
+
             $photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
+            //$photo->move(public_path('images'),$photoFileName);
+
+
+        } else {
+
         }
 
 
@@ -87,6 +103,8 @@ class DoctorController extends Controller
             'doctor_email' => $request->doctor_email,
             'address' => $request->address,
             'sip' => $request->sip,
+            'id_ihs' => $request->id_ihs,
+            'nik' => $request->nik,
             'photo' => $photoFileName,   //ini yang terakhir ditambahkan
             'created_at' => now(),       //kalau pake CREATE() otomatis ada created_at dan updated_at
             'updated_at' => now(),
@@ -103,6 +121,8 @@ class DoctorController extends Controller
         // $doctor->address = $request->address;
         // $doctor->photo = $photoFileName;
         // $doctor->sip = $request->sip;
+        // $doctor->id_ihs => $request->id_ihs,
+        // $doctor->nik => $request->nik,
         // $doctor->save();
 
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully.');
@@ -136,6 +156,8 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'id_ihs' => 'required',
+            'nik' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // adjust file types and size as needed
         ]);
 
@@ -146,8 +168,14 @@ class DoctorController extends Controller
         $photoPath = $doctor->photo;
         if ($request->hasFile('photo')) {
             $photoExtension = $request->file('photo')->getClientOriginalExtension();
-            $photoFileName = $request->doctor_name . ".{$photoExtension}";
+            //$photoFileName = $request->doctor_name . ".{$photoExtension}";
+            $photoFileName = $request->doctor_name . time().".{$photoExtension}";
             $photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
+            //$photo->move(public_path('images'),$photoFileName);
+
+        } else {
+            // If no new photo is uploaded, use the existing photo path
+            $photoFileName = $photoPath;
         }
 
 
@@ -159,8 +187,12 @@ class DoctorController extends Controller
             'doctor_email' => $request->doctor_email,
             'address' => $request->address,
             'sip' => $request->sip,
+            'id_ihs' => $request ->id_ihs,
+            'nik' => $request-> nik,
             //'photo' => $photoPath,
             'photo' => $photoFileName,
+
+
             'updated_at' => now(),
 
         ]);

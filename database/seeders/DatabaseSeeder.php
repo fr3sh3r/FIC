@@ -53,8 +53,12 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        //call untuk memanggil Class Seeders DoctorSeeder
-        $this->call(DoctorSeeder::Class);
+        //call untuk memanggil Class Seeders DoctorSeeder dan DoctorScheduleSeeder
+        $this->call([
+            DoctorSeeder::Class,
+            DoctorScheduleSeeder::Class,
+
+        ]);
 
     }
 }
