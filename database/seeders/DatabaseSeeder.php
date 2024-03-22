@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'edi@fic15.com',
             'role' => 'admin',
             'password' => Hash::make('12345678'),
-             //jangan pakai bcrypt('password'), tapi HASH
-             //seharusnya langsung otomatis keluar use Illuminate\Support\Facades\Hash; di atas tapi nyatanya tidak
+            //jangan pakai bcrypt('password'), tapi HASH
+            //seharusnya langsung otomatis keluar use Illuminate\Support\Facades\Hash; di atas tapi nyatanya tidak
             'phone' => '1234567890',
         ]);
 
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         //seeder profile_clinics manual
         //membuat data manual
         \App\Models\ProfileClinic::factory()->create([
-            'name'=> 'Klinik Segar Bugar',
+            'name' => 'Klinik Segar Bugar',
             'address' => 'Jl. Gatot Subroto no. 72 Jakarta',
             'phone' => '02155829122',
             'email' => 'service@klinik_segar_bugar.com',
@@ -55,11 +55,10 @@ class DatabaseSeeder extends Seeder
 
         //call untuk memanggil Class Seeders DoctorSeeder, DoctorScheduleSeeder, PatientSeeder
         $this->call([
-            DoctorSeeder::Class,
-            DoctorScheduleSeeder::Class,
-            PatientSeeder::Class,
+            DoctorSeeder::class,
+            DoctorScheduleSeeder::class,
+            PatientSeeder::class,
 
         ]);
-
     }
 }
