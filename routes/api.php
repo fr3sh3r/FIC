@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//login
+//Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+Route::post('/login',[AuthController::class,'login']);
+//import dahulu    use App\Http\Controllers\Api\AuthController;   di baris bagian atas
+
+//logout
+//Route::middleware('auth:sanctum')->post('/logout', [AuthController::class]);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+//doctors
+//Route::get('/doctors', [DoctorController::class, 'index']);
+
+Route::apiResource('/api-doctors', DoctorController::class)->middleware('auth:sanctum');

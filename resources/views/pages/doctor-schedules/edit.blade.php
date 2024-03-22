@@ -27,25 +27,19 @@
             <div class="section-body">
                 <h2 class="section-title">Doctor</h2>
 
-
-
                 <div class="card">
+                    <div class="card-body">
+                        {{-- //<form action="{{ route('doctor-schedules.update', $doctorSchedule->id) }}" method="POST"
+                            enctype="multipart/form-data"> --}}
+                        <form action="{{ route('doctor-schedules.update', $doctorSchedule->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
 
-                    {{-- <form action="{{ route('doctor-schedules.update', $doctor->id) }}" method="POST"> --}}
-                    <form action="{{ route('doctor-schedules.update', $doctorSchedule->id) }}" method="POST"
-                        enctype="multipart/form-data">
-
-
-                        @csrf
-                        @method('PUT')
-                        <div class="card-header">
-                            <h4>Edit Doctor Schedules</h4>
-                        </div>
-                        <div class="card-body">
-
-                            {{-- ketemu nama doctornya, lalu cari jadwalnya --}}
+                            {{-- ketemu nama doctornya, lalu kosongkan jadwalnya --}}
                             <div class="form-group" style="margin-top: 37px;">
                                 <label>Doctor Name</label>
+
                                 <input type="text" class="form-control @error('doctor_name') is-invalid @enderror"
                                     name="doctor_name" value="{{ $doctorSchedule->doctor->doctor_name ?? '' }}">
                                 @error('doctor_name')
@@ -55,75 +49,32 @@
                                 @enderror
                             </div>
 
-                            {{-- $daysOfWeek = (['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']); --}}
-                            <!-- Displaying doctor schedules for each day -->
+                            {{-- Loop through days of the week --}}
                             @foreach ($daysOfWeek as $day)
-                                @php
-                                    $schedule = $doctorSchedule->where('day', $day)->first();
-                                    $time = $schedule ? $schedule->time : '';
-                                @endphp
-
                                 <div class="form-group">
-                                    <label>Jadwal {{ $day }}</label>
-                                    <input type="text" class="form-control" name="{{ strtolower($day) }}"
-                                        value="{{ $time }}">
+                                    <label for="{{ strtolower($day) }}">Jadwal {{ $day }}</label>
+                                    <input type="text" class="form-control" id="{{ strtolower($day) }}"
+                                        name="{{ strtolower($day) }}" value="">
                                 </div>
                             @endforeach
 
-
-                            {{-- <div class="form-group">
-                                <label>Jadwal Senin</label>
-                                <input type="text" class="form-control "name="senin">
-                            </div>
+                            {{-- Note textarea --}}
                             <div class="form-group">
-                                <label>Jadwal Selasa</label>
-                                <input type="text" class="form-control "name="selasa">
+                                <label for="note">Note</label>
+                                <textarea class="form-control" id="note" name="note"></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label>Jadwal Rabu</label>
-                                <input type="text" class="form-control "name="rabu">
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                            <div class="form-group">
-                                <label>Jadwal Kamis</label>
-                                <input type="text" class="form-control "name="kamis">
-                            </div>
-                            <div class="form-group">
-                                <label>Jadwal Jumat</label>
-                                <input type="text" class="form-control "name="jumat">
-                            </div>
-                            <div class="form-group">
-                                <label>Jadwal Sabtu</label>
-                                <input type="text" class="form-control "name="sabtu">
-                            </div>
-                            <div class="form-group">
-                                <label>Jadwal Minggu</label>
-                                <input type="text" class="form-control "name="minggu">
-                            </div> --}}
-
-                            {{-- //note textarea --}}
-                            <div class="form-group mb-0">
-                                <label>Note</label>
-                                <textarea class="form-control "name="note"></textarea>
-                            </div>
-
-
-
-                        </div>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-
             </div>
         </section>
     </div>
 @endsection
 
-
-
-
-
 @push('scripts')
+    <!-- Additional scripts can be added here if needed -->
 @endpush

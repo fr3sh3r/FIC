@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorScheduleController;
+use App\Http\Controllers\PatientController;
 
 
 /*
@@ -47,5 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctor-schedules', DoctorScheduleController::class);
     //import                 use App\Http\Controllers\DoctorScheduleController; //taro di baris atas
 
-
+     //route untuk 'patients'
+     Route::resource('patients', PatientController::class);
+     //import                 use App\Http\Controllers\PatientController; //taro di baris atas
+    //atau tulis Route::resource('patients', App\Http\Controllers\PatientController::class);
 });

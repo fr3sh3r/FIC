@@ -152,14 +152,13 @@ class DoctorScheduleController extends Controller
 
     }
 
-
     public function edit($id)
     {
 
 
         $doctorSchedule = DoctorSchedule::find($id);
         $doctors = Doctor::all();
-        //echo "ID: $doctorSchedule->id, Doctor ID: $doctorSchedule->doctor_id, Day: $doctorSchedule->day <br>";
+        echo "ID: $doctorSchedule->id, Doctor ID: $doctorSchedule->doctor_id, Day: $doctorSchedule->day <br>";
 
         //return view('pages.doctor-schedules.edit',compact('doctorSchedule','doctors'));
 
@@ -168,11 +167,13 @@ class DoctorScheduleController extends Controller
     }
 
 
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'doctor_id' => 'required',
-            // Add validation rules for other fields if necessary
+            //'day' => 'required',
+            //'time' => 'required',
         ]);
 
         // Find the existing DoctorSchedule instance by its ID
@@ -201,7 +202,6 @@ class DoctorScheduleController extends Controller
             return redirect()->route('doctor-schedules.index')->with('error', 'Doctor schedule not found.');
         }
     }
-
 
     //delete
     public function destroy($id)

@@ -8,12 +8,13 @@
 
 
         <div class="sidebar-brand">
-            <a href="index.html">
-                <p style="text-align:center">Klinik Sehat Bugar </p>
-            </a>
+            //<a href="index.html">
+                <a href="home">
+                    <p style="text-align:center">Klinik Sehat Bugar </p>
+                </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="dashboard">St</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -45,7 +46,12 @@
                     <li class=''>
                         <a class="nav-link" href="{{ route('doctor-schedules.index') }}">Doctors Schedules</a>
                     </li>
+                </ul>
 
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="{{ route('patients.index') }}">Patients</a>
+                    </li>
                 </ul>
             </li>
 

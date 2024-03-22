@@ -11,6 +11,12 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    //HasApiTokens ini karena pakai Sanctum
+    // ada ini di Models/User
+    ////$token = $user->createToken('auth-token')->plainTextToken;
+
+
+
 
     /**
      * The attributes that are mass assignable.
