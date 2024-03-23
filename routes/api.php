@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//login
+//login ..
 //Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 Route::post('/login',[AuthController::class,'login']);
 //import dahulu    use App\Http\Controllers\Api\AuthController;   di baris bagian atas

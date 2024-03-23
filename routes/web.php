@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctor-schedules', DoctorScheduleController::class);
     //import                 use App\Http\Controllers\DoctorScheduleController; //taro di baris atas
 
-     //route untuk 'patients'
+     //route untuk 'patients  '
      Route::resource('patients', PatientController::class);
      //import                 use App\Http\Controllers\PatientController; //taro di baris atas
     //atau tulis Route::resource('patients', App\Http\Controllers\PatientController::class);
