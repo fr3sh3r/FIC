@@ -115,9 +115,9 @@
                                                             alt="{{ $doctor->doctor_name }} Photo" width="50"
                                                             class="shadow-light rounded-circle">
                                                     @else
-                                                        <img src="{{ asset('img/doctors/none.png') }}"
-                                                            alt="{{ $doctor->doctor_name }} Photo" width="50"
-                                                            class="shadow-light rounded-circle">
+                                                        <img src="{{ asset('img/doctors/none.png') }}" alt=""
+                                                            width="50">
+                                                        {{-- class="shadow-light rounded-circle"> --}}
                                                     @endif
 
 

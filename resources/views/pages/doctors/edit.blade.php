@@ -62,20 +62,30 @@ require                    --}}
                                     {{-- @if ($doctor->photo) --}}
                                     {{-- @if ($doctor->photo && Storage::disk('public')->exists('img/doctors/' . $doctor->photo))
                                         {{-- //<img src="{{ asset('img/doctors/' . $doctor->photo) }}" --}}
-                                    @if ($doctor->photo && Storage::disk('public')->exists('img/doctors/' . $doctor->photo))
+                                    {{-- @if ($doctor->photo && Storage::disk('public')->exists('img/doctors/' . $doctor->photo))
                                         <img src="{{ asset('storage/img/doctors/' . $doctor->photo) }}"
                                             alt="{{ old('doctor_name', $doctor->doctor_name) }} Photo" width="150">
                                     @else
                                         <img src="{{ asset('storage/img/doctors/none.png') }}"
                                             alt="{{ old('doctor_name', $doctor->doctor_name) }} Photo" width="150"
                                             style="margin: 10px;">
+                                    @endif --}}
+
+                                    @if ($doctor->photo && file_exists(public_path('img/doctors/' . $doctor->photo)))
+                                        <img src="{{ asset('img/doctors/' . $doctor->photo) }}"
+                                            alt="{{ $doctor->doctor_name }} Photo" width="50"
+                                            class="shadow-light rounded-circle">
+                                    @else
+                                        <img src="{{ asset('img/doctors/none.png') }}" alt="{{ $doctor->doctor_name }}"
+                                            width="100">
+                                        {{-- class="shadow-light rounded-circle"> --}}
                                     @endif
 
                                 </td>
                             </div>
 
-                            <div class="form-group">
-                                <label>Photo</label>
+                            <div class="form-group" style="margin-top: 17px;">
+                                {{-- <label>Photo </label> --}}
                                 <input type="file" name="photo">
 
                                 @error('photo')
