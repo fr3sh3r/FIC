@@ -21,7 +21,6 @@ class DoctorController extends Controller
         $doctors = DB::table('doctors')
             ->when($request->input('name'), function ($query, $doctor_name) {
                 return $query->where('doctor_name', 'like', '%' . $doctor_name . '%');
-
             })
             ->orderBy('id', 'desc')
             ->paginate(10);
@@ -76,23 +75,29 @@ class DoctorController extends Controller
         // Handle file upload
         $photoPath = null;
         //if image exist
+        // if ($request->hasFile('photo')) {
+        //     $photona = $request->file('photo'); // Retrieve the uploaded file
+        //     $photoExtension = $request->file('photo')->getClientOriginalExtension();
+        //     //saving photo with filename as doctor_name
+        //     //$photoFileName = $request->doctor_name . ".{$photoExtension}";
+
+        //     //saving photo with filename TIME()
+        //     //$photoFileName = time(). ".{$photoExtension}";
+
+        //     //save file image with doctor_name and time
+        //     $photoFileName = $request->doctor_name . time() . ".{$photoExtension}";
+
+        //     //$photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
+        //     $photona->move(public_path('img/doctors/'), $photoFileName);
+        //     $photoPath = 'img/doctors/' . $photoFileName; // Set the file path for storage in the database
+        // }
+
+
         if ($request->hasFile('photo')) {
+
             $photoExtension = $request->file('photo')->getClientOriginalExtension();
-            //saving photo with filename as doctor_name
-            //$photoFileName = $request->doctor_name . ".{$photoExtension}";
-
-            //saving photo with filename TIME()
-            //$photoFileName = time(). ".{$photoExtension}";
-
-            //save file image with doctor_name and time
-            $photoFileName = $request->doctor_name . time().".{$photoExtension}";
-
-            $photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
-            //$photo->move(public_path('images'),$photoFileName);
-
-
-        } else {
-
+            $photoFileNameNa = $request->doctor_name . '_' . time() . ".{$photoExtension}";
+            $photoPath = $this->handleFileUpload($request->file('photo'), $request->doctor_name);
         }
 
 
@@ -105,7 +110,7 @@ class DoctorController extends Controller
             'sip' => $request->sip,
             'id_ihs' => $request->id_ihs,
             'nik' => $request->nik,
-            'photo' => $photoFileName,   //ini yang terakhir ditambahkan
+            'photo' => $photoFileNameNa,   //ini yang terakhir ditambahkan
             'created_at' => now(),       //kalau pake CREATE() otomatis ada created_at dan updated_at
             'updated_at' => now(),
 
@@ -165,20 +170,25 @@ class DoctorController extends Controller
         $doctor = Doctor::findOrFail($id);
 
         // Handle file upload
-        $photoPath = $doctor->photo;
+        $photoPath = $doctor->photo; // Use the existing photo path
+        // if ($request->hasFile('photo')) {
+        //     $photoExtension = $request->file('photo')->getClientOriginalExtension();
+        //     //$photoFileName = $request->doctor_name . ".{$photoExtension}";
+        //     $photoFileName = $request->doctor_name . time() . ".{$photoExtension}";
+        //     $photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
+        //     //$photo->move(public_path('images'),$photoFileName);
+
+        // } else {
+        //     // If no new photo is uploaded, use the existing photo path
+        //     $photoFileName = $photoPath;
+        // }
+
         if ($request->hasFile('photo')) {
+
             $photoExtension = $request->file('photo')->getClientOriginalExtension();
-            //$photoFileName = $request->doctor_name . ".{$photoExtension}";
-            $photoFileName = $request->doctor_name . time().".{$photoExtension}";
-            $photoPath = $request->file('photo')->storeAs('img/doctors', $photoFileName, 'public');
-            //$photo->move(public_path('images'),$photoFileName);
-
-        } else {
-            // If no new photo is uploaded, use the existing photo path
-            $photoFileName = $photoPath;
+            $photoFileNameNa = $request->doctor_name . '_' . time() . ".{$photoExtension}";
+            $photoPath = $this->handleFileUpload($request->file('photo'), $request->doctor_name);
         }
-
-
         // Update the doctor record
         $doctor->update([
             'doctor_name' => $request->doctor_name,
@@ -187,10 +197,10 @@ class DoctorController extends Controller
             'doctor_email' => $request->doctor_email,
             'address' => $request->address,
             'sip' => $request->sip,
-            'id_ihs' => $request ->id_ihs,
-            'nik' => $request-> nik,
+            'id_ihs' => $request->id_ihs,
+            'nik' => $request->nik,
             //'photo' => $photoPath,
-            'photo' => $photoFileName,
+            'photo' => $photoFileNameNa,
 
 
             'updated_at' => now(),
@@ -214,6 +224,18 @@ class DoctorController extends Controller
         // return redirect()->route('doctors.index')->with('success', 'Doctor deleted successfully.');
     }
 
+    // Handle file upload
+    private function handleFileUpload($file, $doctorName)
+    {
+        if (!$file) {
+            return null;
+        }
 
+        $photoExtension = $file->getClientOriginalExtension();
+        $photoFileName = $doctorName . '_' . time() . '.' . $photoExtension;
 
+        $file->move(public_path('img/doctors'), $photoFileName);
+        //return 'img/doctors/' . $photoFileName;
+        return $photoFileName;
+    }
 }
