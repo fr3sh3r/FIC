@@ -89,7 +89,9 @@ class DoctorScheduleSeeder extends Seeder
                     'day' => $faker->randomElement($namahari),
                     'time' => $faker->randomElement(['07:00-09:00', '08:00-10:00', '09:30-11:30', '11:00-12:00', '16:00-20:00', '16:00-18:00', '18:00-20:00']),
                     'status' => 'Active',
-                    'note' => $faker->sentence
+                    'note' => $faker->sentence,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
 
                 // Check if the generated schedule is unique
