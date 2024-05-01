@@ -109,6 +109,8 @@ class DoctorSeeder extends Seeder
 
 
         // Create doctor records with faker
+        //bikin dokter minimal 30 , karena di patientschedule diset minimal 20 (spy aman)
+
         $doctors = [];
         for ($i = 0; $i < 30; $i++) {
             $doctors[] = [

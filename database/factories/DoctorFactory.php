@@ -19,10 +19,10 @@ class DoctorFactory extends Factory
         $bodongKU = \Faker\Factory::create('id_ID');
         // Array of image filenames
         $gambarbodongKU = [
-            'L1.png','No Pics', 'L10.png', 'L11.png', 'L12.png', 'L13.png', 'L14.png', 'L15.png', 'L16.png', 'L17.png', 'L18.png',
+            'L1.png', 'No Pics', 'L10.png', 'L11.png', 'L12.png', 'L13.png', 'L14.png', 'L15.png', 'L16.png', 'L17.png', 'L18.png',
             'L19.png', 'L2.png', 'L20.png', 'L21.png', 'L3.png', 'L4.png', 'L5.png', 'L6.png', 'L7.png', 'L8.png', 'L9.png',
             '', 'NULL', 'P1.png', 'P10.png', 'P11.png', 'P12.png', 'P13.png', 'p14.png', 'P15.png', 'p16.png',
-            'P17.png', 'P2.png', 'P21.jpg', 'P3.png', 'P4.png', 'P5.png', 'P6.png', 'P7.png', 'P8.png', 'P9.png',''
+            'P17.png', 'P2.png', 'P21.jpg', 'P3.png', 'P4.png', 'P5.png', 'P6.png', 'P7.png', 'P8.png', 'P9.png', ''
         ]; //dimasukan '' agar NULL  , untuk memberi contoh tidak ada gambar
 
         $spesialisasibodongKU = [
@@ -94,7 +94,5 @@ class DoctorFactory extends Factory
             'id_ihs' => $this->faker->word,
             'nik' => $this->faker->numberBetween(2731288123, 9232287629),
         ];
-
-
     }
 }

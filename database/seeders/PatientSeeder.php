@@ -84,7 +84,7 @@ class PatientSeeder extends Seeder
         // 'relationship_name',
         // 'relationship_phone'
 
-
+        //bikin pasien minimal 30 , karena di patientschedule diset minimal 20 (spy aman)
         $patientna = [];
         for ($i = 0; $i < 30; $i++) {
             $patientna[] = [

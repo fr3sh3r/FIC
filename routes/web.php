@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorScheduleController;
 use App\Http\Controllers\PatientController;
-
+use App\Http\Controllers\ServiceMedicinesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('patients', PatientController::class);
     //import                 use App\Http\Controllers\PatientController; //taro di baris atas
     //atau tulis Route::resource('patients', App\Http\Controllers\PatientController::class);
+
+    //route untuk 'service medicines ' untuk membedakan dengan variable, maka di route kita pake DASH  service-medicines bukan service_medicines
+    Route::resource('service-medicines', ServiceMedicinesController::class);
 });

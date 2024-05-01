@@ -15,7 +15,7 @@ class DoctorController extends Controller
         //get all
         $doctors = DB::table('doctors')
             ->when($request->input('name'), function ($query, $doctor_name) {
-               return $query->where ('doctor_name', 'like', '%' . $doctor_name . '%');
+                return $query->where('doctor_name', 'like', '%' . $doctor_name . '%');
             })
             ->orderBy('id', 'desc')
             ->get();
@@ -29,8 +29,5 @@ class DoctorController extends Controller
             'message' => 'Sukses',
             'status' => 'Berhasil'
         ], 200);
-
     }
-
-
 }

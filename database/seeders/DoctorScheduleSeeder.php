@@ -7,6 +7,8 @@ use Faker\Factory as Faker;
 use App\Models\Doctor;
 use App\Models\DoctorSchedule;
 
+use Illuminate\Support\Carbon;
+
 class DoctorScheduleSeeder extends Seeder
 {
     /**
@@ -79,7 +81,7 @@ class DoctorScheduleSeeder extends Seeder
         //pengen unik dan random jumlahnya, jangan selalu 3 baris
         //perfect
         Doctor::all()->each(function ($doctor) use ($faker, $namahari) {
-            $numSchedules = rand(1, 3); // Generate a random number of schedules between 1 and 3
+            $numSchedules = rand(2, 5); // Generate a random number of schedules between 1 and 3
             $schedules = collect(); // Collect schedules to check for duplicates
 
             // Generate schedules until we have the desired number of unique ones
@@ -87,11 +89,13 @@ class DoctorScheduleSeeder extends Seeder
                 $schedule = [
                     'doctor_id' => $doctor->id,
                     'day' => $faker->randomElement($namahari),
-                    'time' => $faker->randomElement(['07:00-09:00', '08:00-10:00', '09:30-11:30', '11:00-12:00', '16:00-20:00', '16:00-18:00', '18:00-20:00']),
+                    'time' => $faker->randomElement(['07:00-09:00',  '09:30-11:30', '12:00-14:00', '16:00-20:00', '16:00-18:00', '18:00-20:00']),
                     'status' => 'Active',
                     'note' => $faker->sentence,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    // 'created_at' => now(), //pake now jadi waktu UTC / GMT
+                    // 'updated_at' => now(),
+                    'created_at' => Carbon::now()->locale('id_ID')->toDateTimeString(), // Set to the current local time in Indonesian locale
+                    'updated_at' => Carbon::now()->locale('id_ID')->toDateTimeString(), // Set to the current local time in Indonesian locale
                 ];
 
                 // Check if the generated schedule is unique

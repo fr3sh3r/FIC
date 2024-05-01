@@ -23,7 +23,7 @@ class DoctorScheduleFactory extends Factory
             //'day' => ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][array_rand(['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'])],
             //'time' => $this->faker->word,
             'time' => $this->faker->randomElement(['08:00-10:00','10:00-12:00','12:00-14:00','14:00-16:00','16:00-18:00','18:00-20:00']),
-            'status' => $this->faker->randomElement(['active','inactive']),
+            'status' => $this->faker->randomElement(['Active','Inactive']),
             'note' => $this->faker->word,
             //
         ];

@@ -53,27 +53,6 @@
                                 </div>
 
 
-                                {{-- //=========reminder=============
-                                    ini nama table field yang ada di tabel doctors, dicek di database->migrations
-                                $table->id();
-                                //doctor_name
-                                $table->string('doctor_name');
-                                //doctor_specialist
-                                $table->string('doctor_specialist');
-                                //doctor_phone
-                                $table->string('doctor_phone');
-                                //doctor_email
-                                $table->string('doctor_email');
-                                //doctor_Photo
-                                $table->string('photo')->nullable();
-                                //doctor_address
-                                $table->string('address')->nullable();
-                                //doctor_sip Surat Ijin Praktek
-                                $table->string('sip');
-                                $table->timestamps();
-                                //============= end of reminder ==========
-                                --}}
-
 
                                 <div class="clearfix mb-3"></div>
 

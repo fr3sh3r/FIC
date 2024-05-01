@@ -43,11 +43,11 @@ class AuthController extends Controller
         //pelajari dulu cara menginstall Sanctum
         //https://laravel.com/docs/10.x/sanctum
         //1. You may install Laravel Sanctum via the Composer package manager:
-                // ketik di Terminal        composer require laravel/sanctum
+        // ketik di Terminal        composer require laravel/sanctum
         //2. Next, you should publish the Sanctum configuration and migration files using the vendor:publish Artisan command. The sanctum configuration file will be placed in your application's config directory:
-                // ketik php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+        // ketik php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
         //3. Finally, you should run your database migrations. Sanctum will create one database table in which to store API tokens:
-                //php artisan migrate
+        //php artisan migrate
 
 
         //check if user is exist
@@ -91,6 +91,4 @@ class AuthController extends Controller
             'message' => 'Logged out successfully'
         ], 200);
     }
-
-
 }

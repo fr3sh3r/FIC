@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\PatientSchedule;
+use App\Models\ServiceMedicines;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,8 +28,18 @@ class DatabaseSeeder extends Seeder
 
         //seeder data statis (tidak otomatis)
         \App\Models\User::factory()->create([
-            'name' => 'Admin User',
+            'name' => 'Admin Edi',
             'email' => 'edi@fic15.com',
+            'role' => 'admin',
+            'password' => Hash::make('12345678'),
+            //jangan pakai bcrypt('password'), tapi HASH
+            //seharusnya langsung otomatis keluar use Illuminate\Support\Facades\Hash; di atas tapi nyatanya tidak
+            'phone' => '1234567890',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Admin Guest',
+            'email' => 'guest@tamu.com',
             'role' => 'admin',
             'password' => Hash::make('12345678'),
             //jangan pakai bcrypt('password'), tapi HASH
@@ -53,12 +66,14 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        //call untuk memanggil Class Seeders DoctorSeeder, DoctorScheduleSeeder, PatientSeeder
+        //call untuk memanggil Class Seeders DoctorSeeder, DoctorScheduleSeeder, PatientSeeder, ServiceMedicinesSeeder, ProfileClinicSeeder
         $this->call([
             DoctorSeeder::class,
             DoctorScheduleSeeder::class,
             PatientSeeder::class,
-
+            ServiceMedicinesSeeder::class,
+            ProfileClinicSeeder::class,
+            PatientScheduleSeeder::class,
         ]);
     }
 }

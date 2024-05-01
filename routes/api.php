@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\DoctorScheduleController;
+use App\Http\Controllers\Api\PatientController;
+use App\Http\Controllers\Api\PatientScheduleController;
+use App\Http\Controllers\Api\ServiceMedicinesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //login ..
 //Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/login', [AuthController::class, 'login']);
 //import dahulu    use App\Http\Controllers\Api\AuthController;   di baris bagian atas
 
 //logout
@@ -31,5 +35,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 //doctors
 //Route::get('/doctors', [DoctorController::class, 'index']);
-
 Route::apiResource('/api-doctors', DoctorController::class)->middleware('auth:sanctum');
+
+//patients
+Route::apiResource('/api-patients', PatientController::class)->middleware('auth:sanctum');
+
+//doctor schedules
+Route::apiResource('/api-doctor-schedules', DoctorScheduleController::class)->middleware('auth:sanctum');
+
+//service medicines
+Route::apiResource('/api-service-medicines', ServiceMedicinesController::class)->middleware('auth:sanctum');
+
+//patient schedule
+Route::apiResource('/api-patient-schedules', PatientScheduleController::class)->middleware('auth:sanctum');
