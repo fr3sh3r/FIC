@@ -45,7 +45,7 @@ class PatientScheduleController extends Controller
             'doctor_id' => 'required',
             'schedule_time' => 'required',
             'complaint' => 'required',
-            'status' => 'required'
+            //'status' => 'required'
             //'no_antrian' => 'required',   //tidak perlu karena belum ada
             // 'payment_method' => 'required',
             //'total_price'  => 'required'
@@ -83,6 +83,6 @@ class PatientScheduleController extends Controller
             'data' => $patientSchedule,
             'message' => 'Patient schedule data saved successfully',
             'status' => 'OK'
-        ], 200);
+        ], 201);
     }
 }
