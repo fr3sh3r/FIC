@@ -98,7 +98,7 @@
                                     <label class="selectgroup-item">
                                         <input type="radio" name="role" value="doctor" class="selectgroup-input"
                                             @if ($user->role == 'doctor') checked @endif>
-                                        <span class="selectgroup-button">Doctor</span>
+                                        <span class="selectgroup-button">Staff</span>
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="role" value="user" class="selectgroup-input"

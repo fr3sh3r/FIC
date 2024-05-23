@@ -100,7 +100,7 @@
                                                     {{-- @if ($doctor->photo) --}}
                                                     {{-- //using storage/img/doctors as default folder --}}
                                                     {{-- pilihan class="shadow-light rounded-circle" or class="img-thumbnail" or class="rounded" --}}
-                                                    {{-- @if ($doctor->photo && Storage::disk('public')->exists('img/doctors/' . $doctor->photo))
+                                                    @if ($doctor->photo && Storage::disk('public')->exists('img/doctors/' . $doctor->photo))
                                                         <img src="{{ asset('storage/img/doctors/' . $doctor->photo) }}"
                                                             alt="{{ $doctor->doctor_name }} Photo" width="50"
                                                             class="shadow-light rounded-circle">
@@ -108,17 +108,17 @@
                                                         <img src="{{ asset('storage/img/doctors/none.png') }}"
                                                             alt="{{ $doctor->doctor_name }} Photo" width="50"
                                                             class="shadow-light rounded-circle">
-                                                    @endif --}}
+                                                    @endif
 
-                                                    @if ($doctor->photo && file_exists(public_path('img/doctors/' . $doctor->photo)))
+                                                    {{-- @if ($doctor->photo && file_exists(public_path('img/doctors/' . $doctor->photo)))
                                                         <img src="{{ asset('img/doctors/' . $doctor->photo) }}"
                                                             alt="{{ $doctor->doctor_name }} Photo" width="50"
                                                             class="shadow-light rounded-circle">
                                                     @else
                                                         <img src="{{ asset('img/doctors/none.png') }}" alt=""
                                                             width="50">
-                                                        {{-- class="shadow-light rounded-circle"> --}}
-                                                    @endif
+
+                                                    @endif --}}
 
 
 

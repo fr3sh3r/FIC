@@ -25,7 +25,7 @@
                                 <h4>Total Admin</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                3
                             </div>
                         </div>
                     </div>
@@ -37,10 +37,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>News</h4>
+                                <h4>Doctors</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                17
                             </div>
                         </div>
                     </div>

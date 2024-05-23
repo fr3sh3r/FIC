@@ -95,8 +95,8 @@
                                         <span class="selectgroup-button">Admin</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="doctor" class="selectgroup-input">
-                                        <span class="selectgroup-button">Doctor</span>
+                                        <input type="radio" name="role" value="Doctor" class="selectgroup-input">
+                                        <span class="selectgroup-button">Staff</span>
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="role" value="user" class="selectgroup-input">

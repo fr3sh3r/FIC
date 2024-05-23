@@ -18,7 +18,8 @@ return new class extends Migration
             //doctor_id foreign key
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
             //schedule-time
-            $table->dateTime('schedule_time');
+            //$table->dateTime('schedule_time');
+            $table->date('schedule_time');
             //complaint
             $table->text('complaint');
             //status enum ('waiting', 'processing', 'processed', 'canceled, 'completed')

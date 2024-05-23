@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\DoctorScheduleController;
+use App\Http\Controllers\Api\MedicalRecordController;
 use App\Http\Controllers\Api\PatientController;
 use App\Http\Controllers\Api\PatientScheduleController;
+use App\Http\Controllers\Api\PaymentDetailController;
+use App\Http\Controllers\Api\SatuSehatTokenController;
 use App\Http\Controllers\Api\ServiceMedicinesController;
 
 /*
@@ -48,3 +51,23 @@ Route::apiResource('/api-service-medicines', ServiceMedicinesController::class)-
 
 //patient schedule
 Route::apiResource('/api-patient-schedules', PatientScheduleController::class)->middleware('auth:sanctum');
+
+// Add a separate route for searching patient schedules
+Route::get('/api-patient-schedules/search', [PatientScheduleController::class, 'searchByName'])->middleware('auth:sanctum');
+
+Route::get('/api-patient-schedules/{id}', [PatientScheduleController::class, 'show'])->middleware('auth:sanctum');
+
+
+
+
+//satusehat token
+Route::get('/satusehat-token', [SatuSehatTokenController::class, 'token'])->middleware('auth:sanctum');;
+
+//medical records
+Route::apiResource('/api-medical-records', MedicalRecordController::class)->middleware('auth:sanctum');
+
+//get service by patient schedule id
+Route::get('/api-medical-records/services/{id}', [MedicalRecordController::class, 'getServicesByScheduleId'])->middleware('auth:sanctum');
+
+//payment details
+Route::apiResource('/api-payment-details', PaymentDetailController::class)->middleware('auth:sanctum');

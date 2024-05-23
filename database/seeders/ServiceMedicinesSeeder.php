@@ -29,7 +29,7 @@ class ServiceMedicinesSeeder extends Seeder
             'Allopurinol 100 mg',
             'Ambeven',
             'Ambroxol 1mg/ml',
-            'Ambroxol mg',
+            'Ambroxol 20mg/ml',
             'Amlodipin 10 mg',
             'Amlodipin 20 mg',
             'Amoxicilin 500 mg',
@@ -41,7 +41,7 @@ class ServiceMedicinesSeeder extends Seeder
             'Asam Tranexamat 500 mg',
             'Bedak Salicil',
             'Betahistin 6 mg',
-            'Betametason 0,%',
+            'Betametason 0,8%',
             'Betominplex',
             'Bisacodyl',
             'Captopril 12 mg',
@@ -205,19 +205,32 @@ class ServiceMedicinesSeeder extends Seeder
             'Kulit dan kelamin',
             'Gizi',
             'Kanker',
-            'Kebidanan dan kandungan',
+            'Kandungan',
             'Gigi dan mulut',
             'Mata',
             'Seksualitas',
-            'Telinga-hidung-tenggorok',
+            'THT',
             'Tulang',
             'Kolesterol',
             'Jantung',
             'Flu',
-            'Ginjal dan hati',
+            'Ginjal',
+            'Hati',
             'Virus',
             'Infeksi',
             'Psikologis',
+            'Jantung',
+            'Bronchitis',
+            'Asma',
+            'Kolestrol',
+            'Asam Urat',
+            'Hypervitaminosis',
+            'Migrain',
+            'Vertigo',
+            'Reflux',
+            'Toxoplasmosis',
+            'Rubella',
+            'Campak',
             'Cedera luar'
         ];
 
@@ -225,28 +238,36 @@ class ServiceMedicinesSeeder extends Seeder
         for ($i = 1; $i <= 100; $i++) {
             switch ($i % 4) {
                 case 0:
-                    $name = $faker->randomElement($NamaPenyakitPerawatanKU);
+                    $name = $faker->unique()->randomElement($NamaPenyakitPerawatanKU);
                     $category = 'Treatment';
+                    $biayaInteger = $faker->numberBetween(3, 10);
+                    $biayaFloat = $biayaInteger * 100000; //jadi 300k - 1jt
                     break;
                 case 1:
-                    $name = $faker->randomElement($namaObatKU);
-                    $category = 'Medicine';  //ada kesalahan di sini misal pakai s sendangkan TablePlusfieldname tidak ada s akan error
+                    $name = $faker->unique()->randomElement($namaObatKU);
+                    $category = 'Medicine'; //ada kesalahan di sini misal pakai s sendangkan TablePlusfieldname tidak ada s akan error
+                    $biayaInteger = $faker->numberBetween(1, 50);
+                    $biayaFloat = $biayaInteger * 10000; //jadi 10k- 500k
                     break;
                 case 2:
                     $name = $faker->randomElement($namapenyakitKonsultasiKU);
                     $category = 'Consultation';
+                    $biayaInteger = $faker->numberBetween(3, 7);
+                    $biayaFloat = $biayaInteger * 50000; //jadi 150k- 350k
                     break;
                 case 3:
-                    $name = $faker->randomElement($NamaPenyakitPerawatanKU);
+                    $name = $faker->unique()->randomElement($NamaPenyakitPerawatanKU);
                     $category = 'Treatment';
+                    $biayaInteger = $faker->numberBetween(3, 10);
+                    $biayaFloat = $biayaInteger * 100000; //jadi 300k - 1jt
                     break;
             }
 
             $serpis[] = [
                 'name' => $name,
                 'category' => $category,
-                'price' => $faker->randomFloat(2, 100000, 3000000.00),
-                'quantity' => $faker->randomNumber(1, 999),
+                'price' => $biayaFloat,
+                'quantity' => $faker->randomNumber(1, 20),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

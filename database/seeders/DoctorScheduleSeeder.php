@@ -25,6 +25,58 @@ class DoctorScheduleSeeder extends Seeder
 
         $faker = Faker::create();
         $namahari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+        $keluhanKU = [
+            'Cepat Lelah',
+            'Penurunan Berat Badan',
+            'Demam Berkepanjangan',
+            'Sensitif Matahari',
+            'Sakit Kepala',
+            'Kejang',
+            'Sakit Dada',
+            'Keguguran',
+            'Riwayat Thrombosis',
+            'Kerontokan Rambut',
+            'Luka Pada Mulut',
+            'Ruam Pada Wajah',
+            'Sesak Nafas',
+            'Batuk Darah',
+            'Diare Kronis',
+            'Perut Kembung',
+            'Pendarahan',
+            'Sakit Perut',
+            'Perut Kembung',
+            'Perut Bengkak',
+            'Mudah Memar',
+            'Sulit Pipis',
+            'Sulit Bab',
+            'Konstipasi',
+            'Kencing Darah',
+            'Sakit Gigi',
+            'Sariawan Akut',
+            'Amandel',
+            'Ambeien Parah',
+            'Gangguan Hormon',
+            'Darah Tinggi',
+            'Gula Darah Naik',
+            'Obesitas',
+            'Gangguan Tiroid',
+            'Hiperkalsemia',
+            'Hipkalsemia',
+            'Gondok',
+            'Anemia',
+            'Thalasemia',
+            'Hemofilia',
+            'Kelainan Sumsum Tulang',
+            'Radang Usus',
+            'Infeksi Saluran Kemih',
+            'Batu Ginjal',
+            'Kutu Air',
+            'Panu',
+            'Kurap',
+            'Kalau Duit Habis, Mual2'
+        ];
+
+
 
         // Auto generate doctor schedules
         // Doctor::all()->each(function ($doctor) use ($faker, $namahari) {
@@ -84,6 +136,24 @@ class DoctorScheduleSeeder extends Seeder
             $numSchedules = rand(2, 5); // Generate a random number of schedules between 1 and 3
             $schedules = collect(); // Collect schedules to check for duplicates
 
+            $catatanjadwaldokterKU = [
+                'Harap konfirmasi jadwal ke aspri',
+                'Jadwal dapat berubah sewaktu-waktu',
+                'Jadwal diupdate di Instagram',
+                'Konfirmasi via Whatsapp',
+                'Tanya jadwal ke customer service',
+                'Tetap praktek di tanggal merah',
+                'Untuk informasi kehadiran dokter via Call Center',
+                'Tidak pernah tolerir keterlambatan',
+                'Sering terlambat jika ada tindakan',
+                'Jika tanggal merah, jadwal menjadi keesokannya',
+                'Dokter cuti 2 minggu sejak kemarin',
+                'Jadwal bisa berubah sesuai perjanjian',
+                'Dokter batal praktek karena ada keperluan',
+                'Ada operasi memanjang',
+            ];
+
+
             // Generate schedules until we have the desired number of unique ones
             while ($schedules->count() < $numSchedules) {
                 $schedule = [
@@ -91,7 +161,7 @@ class DoctorScheduleSeeder extends Seeder
                     'day' => $faker->randomElement($namahari),
                     'time' => $faker->randomElement(['07:00-09:00',  '09:30-11:30', '12:00-14:00', '16:00-20:00', '16:00-18:00', '18:00-20:00']),
                     'status' => 'Active',
-                    'note' => $faker->sentence,
+                    'note' => $faker->randomElement($catatanjadwaldokterKU),
                     // 'created_at' => now(), //pake now jadi waktu UTC / GMT
                     // 'updated_at' => now(),
                     'created_at' => Carbon::now()->locale('id_ID')->toDateTimeString(), // Set to the current local time in Indonesian locale
